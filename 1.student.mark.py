@@ -23,8 +23,12 @@ def input_course_info():
     name = input("Enter course name: ")
     courses.append({"id": id, "name": name})
 
-def input_marks():
-    course_id = input("Select a course ID: ")
+def input_marks_for_all_courses():
+    for course in courses:
+        print(f"Entering marks for course {course['name']}")
+        input_marks(course['id'])
+
+def input_marks(course_id):
     for student in students:
         mark = float(input(f"Enter mark for student {student['name']}: "))
         marks.append({"student_id": student["id"], "course_id": course_id, "mark": mark})
@@ -52,8 +56,7 @@ num_courses = input_number_of_courses()
 for _ in range(num_courses):
     input_course_info()
 
-input_marks()
-
+input_marks_for_all_courses()
 list_courses()
 list_students()
 show_marks()
